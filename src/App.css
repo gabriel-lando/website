@@ -1,42 +1,301 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ─── Page layout ─────────────────────────────────────────── */
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 1.5rem;
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* ─── 3-D scene wrapper ────────────────────────────────────── */
+.card-scene {
+  width: min(560px, 100%);
+  aspect-ratio: 1.75 / 1;
+  perspective: 1200px;  position: relative;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.flip-hint {
+  position: absolute;
+  bottom: -1.5rem;
+  right: 0;
+  margin: 0;
+  font-size: 0.65rem;
+  opacity: 0.45;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 0.04em;}
+
+/* ─── Clickable / hoverable shell ─────────────────────────── */
+.card-body {
+  width: 100%;
+  height: 100%;
+  cursor: default;
+}
+
+/* ─── The element that actually rotates ───────────────────── */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 16px;
+}
+
+/* Tap / click flip (all devices) ── */
+.card-body.is-flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-body {
+  cursor: pointer;
+}
+
+/* ─── Shared face styles ───────────────────────────────────── */
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Light / Dark card colors ─────────────────────────────── */
+@media (prefers-color-scheme: light) {
+  .card-face {
+    background: #ffffff;
+    color: #1a1a2e;
   }
-  to {
-    transform: rotate(360deg);
+  .card-front {
+    border-top: 4px solid #3b5bdb;
+  }
+  .card-back {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
+    color: #e8f0fe;
+    border: none;
+  }
+  .card-name { color: #1a1a2e; }
+  .card-title { color: #3b5bdb; }
+  .card-company { color: #555; }
+  .card-links a { color: #3b5bdb; }
+  .card-links a:hover { color: #1d4ed8; }
+  .front-info::before {
+    background: #e8edf8;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (prefers-color-scheme: dark) {
+  .card-face {
+    background: #1e1e2e;
+    color: #cdd6f4;
+  }
+  .card-front {
+    border-top: 4px solid #7c9ef8;
+  }
+  .card-back {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%);
+    color: #e8f0fe;
+    border: none;
+  }
+  .card-name { color: #cdd6f4; }
+  .card-title { color: #7c9ef8; }
+  .card-company { color: #a6adc8; }
+  .card-links a { color: #7c9ef8; }
+  .card-links a:hover { color: #89b4fa; }
+  .front-info::before {
+    background: #2a2a3e;
   }
 }
 
-.card {
-  padding: 2em;
+/* ─── Front face layout ────────────────────────────────────── */
+.card-front {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
 }
 
-.read-the-docs {
-  color: #888;
+.front-photo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 0 0 1.4rem;
+  flex-shrink: 0;
+  width: 28%;
+}
+
+.front-photo img {
+  width: 100%;
+  max-width: 120px;
+  object-fit: contain;
+  object-position: bottom;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+}
+
+.front-info {
+  flex: 1;
+  padding: 1.1rem 1.2rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.card-name {
+  margin: 0 0 0.15em;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.card-title {
+  margin: 0 0 0.1em;
+  font-size: clamp(0.6rem, 1.8vw, 0.78rem);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.card-company {
+  margin: 0 0 0.55em;
+  font-size: clamp(0.6rem, 1.6vw, 0.72rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.card-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  align-items: flex-start;
+}
+
+.card-links li {
+  width: fit-content;
+}
+
+.card-links li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  text-decoration: none;
+  font-size: clamp(0.55rem, 1.6vw, 0.72rem);
+  transition: opacity 0.2s;
+}
+
+.card-links li a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.card-links li a svg {
+  width: clamp(10px, 1.6vw, 13px);
+  height: clamp(10px, 1.6vw, 13px);
+  flex-shrink: 0;
+}
+
+/* ─── Back face layout ─────────────────────────────────────── */
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.back-content {
+  padding: 1rem 1.3rem;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.back-heading {
+  margin: 0 0 0.25em;
+  font-size: clamp(0.55rem, 1.5vw, 0.68rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.back-section {
+  flex-shrink: 0;
+}
+
+.back-skills {
+  margin: 0;
+  font-size: clamp(0.55rem, 1.4vw, 0.66rem);
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.back-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 0.4rem 0;
+}
+
+.back-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.back-role {
+  margin: 0;
+  font-size: clamp(0.58rem, 1.5vw, 0.7rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.back-meta {
+  margin: 0 0 0.3em;
+  font-size: clamp(0.52rem, 1.3vw, 0.62rem);
+  opacity: 0.7;
+  line-height: 1.3;
+}
+
+.back-stats {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 0.2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+}
+
+.stat-number {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+/* ─── Mobile: stack photo above info if very narrow ─────────── */
+@media (max-width: 400px) {
+  .card-scene {
+    aspect-ratio: unset;
+    height: 220px;
+  }
+  .front-photo {
+    width: 22%;
+    padding-left: 0.8rem;
+  }
 }

@@ -1,35 +1,113 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+
+const IconEmail = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
+const IconGitHub = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+  </svg>
+);
+
+const IconLinkedIn = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [flipped, setFlipped] = useState(false);
+
+  const handleClick = () => setFlipped((prev) => !prev);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="page">
+      <div className="card-scene">
+        <p className="flip-hint">{flipped ? '↩ tap to flip back' : 'tap to flip ↩'}</p>
+        <div className={`card-body${flipped ? ' is-flipped' : ''}`} onClick={handleClick} role="button" aria-label={flipped ? 'Flip card to front' : 'Flip card to back'}>
+          <div className="card-inner">
+            {/* ── FRONT ── */}
+            <div className="card-face card-front">
+              <div className="front-photo">
+                <img src="/profile_picture.png" alt="Gabriel Lando" />
+              </div>
+              <div className="front-info">
+                <h1 className="card-name">Gabriel Lando</h1>
+                <p className="card-title">Expert Software Applications Engineer</p>
+                <p className="card-company">HP Inc.</p>
+                <ul className="card-links">
+                  <li>
+                    <a href="mailto:mail@gabriellando.com" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                      <IconEmail />
+                      <span>mail@gabriellando.com</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/in/gabriellando" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                      <IconLinkedIn />
+                      <span>in/gabriellando</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/gabriel-lando" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                      <IconGitHub />
+                      <span>gabriel-lando</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* ── BACK ── */}
+            <div className="card-face card-back">
+              <div className="back-content">
+                <div className="back-section">
+                  <h2 className="back-heading">Skills</h2>
+                  <p className="back-skills">C · C++ · C# · Python · JavaScript · Node.js · Go · Bash</p>
+                  <p className="back-skills">Cloud · DevOps · Docker · Kubernetes · Git · Linux · Audio/Video</p>
+                </div>
+                <div className="back-divider" />
+                <div className="back-columns">
+                  <div className="back-section">
+                    <h2 className="back-heading">Experience</h2>
+                    <p className="back-role">Software Applications Engineer</p>
+                    <p className="back-meta">HP Inc. · 2021 – Present</p>
+                  </div>
+                  <div className="back-section">
+                    <h2 className="back-heading">Education</h2>
+                    <p className="back-role">M.Sc. Computer Science</p>
+                    <p className="back-meta">PPGC UFRGS · 2025 – Present</p>
+                    <p className="back-role">B.Eng. Computer Engineering</p>
+                    <p className="back-meta">UFRGS · 2017 – 2022</p>
+                  </div>
+                </div>
+                <div className="back-divider" />
+                <div className="back-stats">
+                  <div className="stat">
+                    <span className="stat-number">4</span>
+                    <span className="stat-label">Publications</span>
+                  </div>
+                  <div className="stat">
+                    <span className="stat-number">7</span>
+                    <span className="stat-label">Patents</span>
+                  </div>
+                  <div className="stat">
+                    <span className="stat-number">4+</span>
+                    <span className="stat-label">Years at HP</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

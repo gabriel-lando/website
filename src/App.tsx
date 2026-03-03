@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import './App.css';
 import { profile, skills, experience, education, stats } from './config';
 
@@ -98,27 +98,19 @@ function App() {
                   <div className="back-section">
                     <h2 className="back-heading">Experience</h2>
                     {experience.map((e, i) => (
-                      <>
-                        <p key={`role-${i}`} className="back-role">
-                          {e.role}
-                        </p>
-                        <p key={`meta-${i}`} className="back-meta">
-                          {e.meta}
-                        </p>
-                      </>
+                      <Fragment key={i}>
+                        <p className="back-role">{e.role}</p>
+                        <p className="back-meta">{e.meta}</p>
+                      </Fragment>
                     ))}
                   </div>
                   <div className="back-section">
                     <h2 className="back-heading">Education</h2>
                     {education.map((ed, i) => (
-                      <>
-                        <p key={`deg-${i}`} className="back-role">
-                          {ed.degree}
-                        </p>
-                        <p key={`edu-meta-${i}`} className="back-meta">
-                          {ed.meta}
-                        </p>
-                      </>
+                      <Fragment key={i}>
+                        <p className="back-role">{ed.degree}</p>
+                        <p className="back-meta">{ed.meta}</p>
+                      </Fragment>
                     ))}
                   </div>
                 </div>

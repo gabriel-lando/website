@@ -38,7 +38,9 @@ function App() {
   return (
     <div className="page">
       <div className="card-scene">
-        <p className="flip-hint">{flipped ? '↩ tap to flip back' : 'tap to flip ↩'}</p>
+        <p className="flip-hint" onClick={handleClick}>
+          {flipped ? '↩ tap to flip back' : 'tap to flip ↩'}
+        </p>
         <div className={`card-body${flipped ? ' is-flipped' : ''}`} onClick={handleClick} role="button" aria-label={flipped ? 'Flip card to front' : 'Flip card to back'}>
           <div className="card-inner">
             {/* ── FRONT ── */}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import { profile, skills, experience, education, stats } from './config';
 
 const IconEmail = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -46,33 +47,33 @@ function App() {
             {/* ── FRONT ── */}
             <div className="card-face card-front">
               <div className="front-photo">
-                <img src="/profile_picture.png" alt="Gabriel Lando" />
+                <img src={profile.photo} alt={profile.name} />
               </div>
               <div className="front-info">
-                <h1 className="card-name">Gabriel Lando</h1>
-                <p className="card-title">Expert Software Applications Engineer</p>
-                <p className="card-company">HP Inc.</p>
+                <h1 className="card-name">{profile.name}</h1>
+                <p className="card-title">{profile.title}</p>
+                <p className="card-company">{profile.company}</p>
                 <ul className="card-links">
                   <li>
-                    <a href="mailto:mail@gabriellando.com" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                    <a href={`mailto:${profile.links.email}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                       <IconEmail />
-                      <span>mail@gabriellando.com</span>
+                      <span>{profile.links.email}</span>
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.linkedin.com/in/gabriellando" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                    <a href={profile.links.linkedin.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                       <IconLinkedIn />
-                      <span>in/gabriellando</span>
+                      <span>{profile.links.linkedin.label}</span>
                     </a>
                   </li>
                   <li>
-                    <a href="https://github.com/gabriel-lando" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                    <a href={profile.links.github.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                       <IconGitHub />
-                      <span>gabriel-lando</span>
+                      <span>{profile.links.github.label}</span>
                     </a>
                   </li>
                   <li>
-                    <a href="https://github.com/gabriel-lando/resume/releases/latest/download/Gabriel_Lando.pdf" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                    <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                       <IconPDF />
                       <span>Resume / CV</span>
                     </a>
@@ -86,38 +87,56 @@ function App() {
               <div className="back-content">
                 <div className="back-section">
                   <h2 className="back-heading">Skills</h2>
-                  <p className="back-skills">C · C++ · C# · Python · JavaScript · Node.js · Go · Bash</p>
-                  <p className="back-skills">Cloud · DevOps · Docker · Kubernetes · Git · Linux · Audio/Video</p>
+                  {skills.map((line, i) => (
+                    <p key={i} className="back-skills">
+                      {line}
+                    </p>
+                  ))}
                 </div>
                 <div className="back-divider" />
                 <div className="back-columns">
                   <div className="back-section">
                     <h2 className="back-heading">Experience</h2>
-                    <p className="back-role">Software Applications Engineer</p>
-                    <p className="back-meta">HP Inc. · 2021 – Present</p>
+                    {experience.map((e, i) => (
+                      <>
+                        <p key={`role-${i}`} className="back-role">
+                          {e.role}
+                        </p>
+                        <p key={`meta-${i}`} className="back-meta">
+                          {e.meta}
+                        </p>
+                      </>
+                    ))}
                   </div>
                   <div className="back-section">
                     <h2 className="back-heading">Education</h2>
-                    <p className="back-role">M.Sc. Computer Science</p>
-                    <p className="back-meta">PPGC UFRGS · 2025 – Present</p>
-                    <p className="back-role">B.Eng. Computer Engineering</p>
-                    <p className="back-meta">UFRGS · 2017 – 2022</p>
+                    {education.map((ed, i) => (
+                      <>
+                        <p key={`deg-${i}`} className="back-role">
+                          {ed.degree}
+                        </p>
+                        <p key={`edu-meta-${i}`} className="back-meta">
+                          {ed.meta}
+                        </p>
+                      </>
+                    ))}
                   </div>
                 </div>
                 <div className="back-divider" />
                 <div className="back-stats">
-                  <div className="stat">
-                    <span className="stat-number">4</span>
-                    <span className="stat-label">Publications</span>
-                  </div>
-                  <div className="stat">
-                    <span className="stat-number">7</span>
-                    <span className="stat-label">Patents</span>
-                  </div>
-                  <div className="stat">
-                    <span className="stat-number">4+</span>
-                    <span className="stat-label">Years at HP</span>
-                  </div>
+                  {stats.map((s, i) =>
+                    s.url ? (
+                      <a key={i} className="stat stat-link" href={s.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                        <span className="stat-number">{s.number}</span>
+                        <span className="stat-label">{s.label}</span>
+                      </a>
+                    ) : (
+                      <div key={i} className="stat">
+                        <span className="stat-number">{s.number}</span>
+                        <span className="stat-label">{s.label}</span>
+                      </div>
+                    ),
+                  )}
                 </div>
               </div>
             </div>

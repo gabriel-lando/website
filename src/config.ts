@@ -6,6 +6,7 @@ export const profile = {
   name: 'Gabriel Lando',
   title: 'Expert Software Applications Engineer',
   company: 'HP Inc.',
+  description: 'Gabriel Lando - Expert Software Applications Engineer at HP Inc. Skilled in C, C++, C#, Python, JavaScript, Node.js, Go, Bash, Cloud, DevOps, Docker, Kubernetes, Git, and Linux.',
   photo: '/profile_picture.png',
 
   links: {

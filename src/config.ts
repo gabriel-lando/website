@@ -35,5 +35,5 @@ export const education: { degree: string; meta: string }[] = [
 export const stats: { number: string; label: string; url?: string }[] = [
   { number: '4', label: 'Publications', url: 'https://scholar.google.com/citations?user=XedTbGMAAAAJ' },
   { number: '7', label: 'Patents', url: 'https://patents.google.com/?inventor=Gabriel+Lando' },
-  { number: '4+', label: 'Years at HP' },
+  { number: '5+', label: 'Years at HP' },
 ];

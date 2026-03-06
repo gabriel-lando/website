@@ -47,7 +47,7 @@ function App() {
             {/* ── FRONT ── */}
             <div className="card-face card-front">
               <div className="front-photo">
-                <img src={profile.photo} alt={profile.name} />
+                <img src={profile.photo} alt={profile.name} fetchPriority="high" />
               </div>
               <div className="front-info">
                 <h1 className="card-name">{profile.name}</h1>

@@ -9,7 +9,7 @@ export default defineConfig({
     {
       name: 'html-description',
       transformIndexHtml(html) {
-        return html.replace('%DESCRIPTION%', profile.description).replace('%TITLE%', profile.name);
+        return html.replace('%DESCRIPTION%', profile.description).replace('%TITLE%', profile.name).replace('%PHOTO%', profile.photo);
       },
     },
     react({

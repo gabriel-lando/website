@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import './App.css';
 import { profile, skills, experience, education, stats } from './config';
 
@@ -35,6 +35,17 @@ function App() {
   const [flipped, setFlipped] = useState(false);
 
   const handleClick = () => setFlipped((prev) => !prev);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        setFlipped((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="page">

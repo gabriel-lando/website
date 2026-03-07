@@ -60,7 +60,7 @@ const IconLinkedIn = () => (
 function App() {
   const [flipped, setFlipped] = useState(false);
   const [cardScale, setCardScale] = useState(() => getCardScale(window.innerWidth, window.innerHeight));
-  const pageRef = useRef<HTMLDivElement>(null);
+  const pageRef = useRef<HTMLElement>(null);
 
   const handleClick = () => setFlipped((prev) => !prev);
 
@@ -102,13 +102,13 @@ function App() {
   }, []);
 
   return (
-    <div className="page" ref={pageRef} style={{ '--card-scale': cardScale } as CSSProperties}>
+    <main className="page" ref={pageRef} style={{ '--card-scale': cardScale } as CSSProperties}>
       <div className="card-wrapper">
         <div className="card-scene">
           <div className="card-scale">
             <div className={`card-inner ${flipped ? 'is-flipped' : ''}`} onClick={handleClick} role="button" aria-label={flipped ? 'Flip card to front' : 'Flip card to back'} tabIndex={0}>
               {/* ── FRONT ── */}
-              <div className="card-face card-front">
+              <div className={`card-face card-front ${flipped ? 'is-inactive' : 'is-active'}`} aria-hidden={flipped}>
                 <div className="bg-accent"></div>
                 <div className="front-left">
                   <h1 className="card-name">{profile.name}</h1>
@@ -147,7 +147,7 @@ function App() {
               </div>
 
               {/* ── BACK ── */}
-              <div className="card-face card-back">
+              <div className={`card-face card-back ${flipped ? 'is-active' : 'is-inactive'}`} aria-hidden={!flipped}>
                 <div className="bg-accent"></div>
 
                 <div className="back-section back-skills-section hide-scrollbar">
@@ -208,7 +208,7 @@ function App() {
         </div>
         <p className="flip-hint">Click or press Space to flip</p>
       </div>
-    </div>
+    </main>
   );
 }
 

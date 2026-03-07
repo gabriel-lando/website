@@ -28,7 +28,7 @@ Fork the repository and edit that file to make the card your own — no other fi
 | `education`  | Array of `{ degree, meta }` entries in the Education section                                                                                                                             |
 | `stats`      | Array of `{ number, label, url? }` highlight stats at the bottom of the back. If `url` is provided, the stat becomes a clickable link                                                    |
 
-Replace `/public/profile_picture.png` with your own photo (keep the same filename, or update `profile.photo` in `src/config.ts`).
+Replace `/public/profile_picture.webp` with your own photo (keep the same filename, or update `profile.photo` in `src/config.ts`).
 
 ## Getting Started
 

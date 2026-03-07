@@ -2,14 +2,14 @@ name: Docker Build And Publish
 
 on:
   schedule:
-    - cron: '0 1 1 * *' # Run at 01:00 on the 1st of every month
+    - cron: "0 1 1 * *" # Run at 01:00 on the 1st of every month
   push:
   workflow_dispatch: # Allow manual triggering of the workflow
 
 env:
-  DOCKERHUB_REPOSITORY: 'gabriellando/website'
+  DOCKERHUB_REPOSITORY: "gabriellando/website"
   TAG_NAME: ${{ gitea.ref == 'refs/heads/main' && 'latest' || 'dev' }}
-  IMAGE_NAME: '${{ env.DOCKERHUB_REPOSITORY }}:${{ env.TAG_NAME }}'
+  IMAGE_NAME: "${{ env.DOCKERHUB_REPOSITORY }}:${{ env.TAG_NAME }}"
 
 jobs:
   build:
@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: '${{ env.IMAGE_NAME }}'
+          tags: "${{ env.IMAGE_NAME }}"
 
       # Update Docker Hub description with the README.md content
       # https://github.com/peter-evans/dockerhub-description

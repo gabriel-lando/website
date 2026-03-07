@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -37,8 +39,16 @@ body {
   place-items: center;
   padding: clamp(1.5rem, 5vw, 4rem);
   background:
-    radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(229, 231, 235, 0.92));
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.12),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(229, 231, 235, 0.92)
+    );
 }
 
 .seo-fallback__inner {
@@ -99,7 +109,11 @@ html.app-ready .seo-fallback {
 @media (prefers-color-scheme: dark) {
   .seo-fallback {
     background:
-      radial-gradient(circle at top right, rgba(96, 165, 250, 0.18), transparent 32%),
+      radial-gradient(
+        circle at top right,
+        rgba(96, 165, 250, 0.18),
+        transparent 32%
+      ),
       linear-gradient(180deg, rgba(15, 16, 17, 0.98), rgba(26, 28, 33, 0.96));
   }
 

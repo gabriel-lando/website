@@ -1,61 +1,100 @@
-import { education, experience, profile, siteConfig, skills, stats } from './config';
+import {
+  education,
+  experience,
+  profile,
+  siteConfig,
+  skills,
+  stats,
+} from "./config";
 
-const escapeHtml = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 
 export const site = {
   origin: siteConfig.origin,
-  path: '/',
-  locale: 'en_US',
-  type: 'website',
-  themeColor: '#2563eb',
+  path: "/",
+  locale: "en_US",
+  type: "website",
+  themeColor: "#2563eb",
   title: `${profile.name} | ${profile.title}`,
   description: profile.description,
   imagePath: siteConfig.socialImage,
-  keywords: [profile.name, profile.title, ...skills.map((skill) => skill.name)].filter((keyword, index, allKeywords) => allKeywords.indexOf(keyword) === index),
+  keywords: [
+    profile.name,
+    profile.title,
+    ...skills.map((skill) => skill.name),
+  ].filter(
+    (keyword, index, allKeywords) => allKeywords.indexOf(keyword) === index,
+  ),
 };
 
 export const siteUrl = new URL(site.path, site.origin).toString();
 export const siteImageUrl = new URL(site.imagePath, site.origin).toString();
-export const siteKeywords = site.keywords.join(', ');
+export const siteKeywords = site.keywords.join(", ");
 
 export const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  'name': profile.name,
-  'description': site.description,
-  'url': siteUrl,
-  'image': siteImageUrl,
-  'email': `mailto:${profile.links.email}`,
-  'jobTitle': profile.title,
-  'worksFor': {
-    '@type': 'Organization',
-    'name': profile.company,
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  description: site.description,
+  url: siteUrl,
+  image: siteImageUrl,
+  email: `mailto:${profile.links.email}`,
+  jobTitle: profile.title,
+  worksFor: {
+    "@type": "Organization",
+    name: profile.company,
   },
-  'sameAs': [profile.links.linkedin, profile.links.github],
-  'alumniOf': education.map((entry) => ({
-    '@type': 'CollegeOrUniversity',
-    'name': entry.meta.split(' · ')[0],
+  sameAs: [profile.links.linkedin, profile.links.github],
+  alumniOf: education.map((entry) => ({
+    "@type": "CollegeOrUniversity",
+    name: entry.meta.split(" · ")[0],
   })),
-  'knowsAbout': skills.map((skill) => skill.name),
-  'mainEntityOfPage': siteUrl,
+  knowsAbout: skills.map((skill) => skill.name),
+  mainEntityOfPage: siteUrl,
 };
 
 export const buildStructuredData = () => JSON.stringify(personJsonLd);
 
 export const buildSeoFallback = () => {
   const socialLinks = [
-    ['Email', `mailto:${profile.links.email}`],
-    ['LinkedIn', profile.links.linkedin],
-    ['GitHub', profile.links.github],
-    ['Resume', profile.links.resume],
+    ["Email", `mailto:${profile.links.email}`],
+    ["LinkedIn", profile.links.linkedin],
+    ["GitHub", profile.links.github],
+    ["Resume", profile.links.resume],
   ]
-    .map(([label, href]) => `<li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`)
-    .join('');
+    .map(
+      ([label, href]) =>
+        `<li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`,
+    )
+    .join("");
 
-  const skillItems = skills.map((skill) => `<li>${escapeHtml(skill.name)}</li>`).join('');
-  const experienceItems = experience.map((entry) => `<li><strong>${escapeHtml(entry.role)}</strong> <span>${escapeHtml(entry.meta)}</span></li>`).join('');
-  const educationItems = education.map((entry) => `<li><strong>${escapeHtml(entry.degree)}</strong> <span>${escapeHtml(entry.meta)}</span></li>`).join('');
-  const statItems = stats.map((entry) => `<li><strong>${escapeHtml(entry.number)}</strong> <span>${escapeHtml(entry.label)}</span></li>`).join('');
+  const skillItems = skills
+    .map((skill) => `<li>${escapeHtml(skill.name)}</li>`)
+    .join("");
+  const experienceItems = experience
+    .map(
+      (entry) =>
+        `<li><strong>${escapeHtml(entry.role)}</strong> <span>${escapeHtml(entry.meta)}</span></li>`,
+    )
+    .join("");
+  const educationItems = education
+    .map(
+      (entry) =>
+        `<li><strong>${escapeHtml(entry.degree)}</strong> <span>${escapeHtml(entry.meta)}</span></li>`,
+    )
+    .join("");
+  const statItems = stats
+    .map(
+      (entry) =>
+        `<li><strong>${escapeHtml(entry.number)}</strong> <span>${escapeHtml(entry.label)}</span></li>`,
+    )
+    .join("");
 
   return `
     <section class="seo-fallback" aria-label="Profile summary">

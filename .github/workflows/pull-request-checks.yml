@@ -1,16 +1,14 @@
-name: Deploy to GitHub Pages
+name: Pull Request Checks
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  deploy:
+  pr-gate:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,16 +27,16 @@ jobs:
       - name: Install Playwright browsers
         run: npm run playwright:install -- --with-deps
 
-      - name: Run unit and browser tests
+      - name: Run all tests
         run: npm run test:all
 
       - name: Build
         run: npm run build
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v6
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
-          cname: www.gabriellando.com
+          name: dist
+          path: ./dist
+          if-no-files-found: error
+          compression-level: 9

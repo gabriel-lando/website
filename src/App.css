@@ -117,7 +117,7 @@
   border-radius: 12px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  overflow: hidden;
+  clip-path: inset(0 round 12px);
   background: var(--card-bg);
   border: 1px solid var(--border);
   display: flex;

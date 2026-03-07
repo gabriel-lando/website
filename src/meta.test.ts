@@ -42,9 +42,8 @@ describe('title', () => {
 });
 
 describe('social and canonical metadata', () => {
-  it('includes canonical URL and markdown alternate link', () => {
+  it('includes the canonical URL', () => {
     expect(builtHtml).toContain(`<link rel="canonical" href="${siteUrl}" />`);
-    expect(builtHtml).toContain(`<link rel="alternate" type="text/markdown" href="${siteUrl}" />`);
   });
 
   it('includes Open Graph and Twitter image metadata', () => {

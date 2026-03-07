@@ -8,7 +8,6 @@ export const site = {
   locale: 'en_US',
   type: 'website',
   themeColor: '#2563eb',
-  markdownMimeType: 'text/markdown',
   title: `${profile.name} | ${profile.title}`,
   description: profile.description,
   imagePath: profile.photo,

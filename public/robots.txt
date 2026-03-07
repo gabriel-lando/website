@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.gabriellando.com/sitemap.xml
+Sitemap: /sitemap.xml

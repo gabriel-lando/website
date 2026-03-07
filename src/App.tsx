@@ -170,7 +170,6 @@ function App() {
                   <h1 className="card-name">{profile.name}</h1>
                   <p className="card-title">{profile.title}</p>
                   <p className="card-company">{profile.company}</p>
-                  <p className="card-summary">{profile.summary}</p>
 
                   <ul className="card-links">
                     <li>

@@ -60,7 +60,7 @@ const IconLinkedIn = () => (
 function App() {
   const [flipped, setFlipped] = useState(false);
   const [cardScale, setCardScale] = useState(() => getCardScale(window.innerWidth, window.innerHeight));
-  const pageRef = useRef<HTMLDivElement>(null);
+  const pageRef = useRef<HTMLElement>(null);
 
   const handleClick = () => setFlipped((prev) => !prev);
 
@@ -102,7 +102,7 @@ function App() {
   }, []);
 
   return (
-    <div className="page" ref={pageRef} style={{ '--card-scale': cardScale } as CSSProperties}>
+    <main className="page" ref={pageRef} style={{ '--card-scale': cardScale } as CSSProperties}>
       <div className="card-wrapper">
         <div className="card-scene">
           <div className="card-scale">
@@ -208,7 +208,7 @@ function App() {
         </div>
         <p className="flip-hint">Click or press Space to flip</p>
       </div>
-    </div>
+    </main>
   );
 }
 

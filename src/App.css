@@ -215,6 +215,14 @@
   color: var(--text-muted);
 }
 
+.card-summary {
+  max-width: 24rem;
+  margin: 1rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
 .front-photo {
   width: 140px;
   height: 140px;
@@ -292,6 +300,18 @@
 .card-links li a svg {
   width: 18px;
   height: 18px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ─── Back face layout ─────────────────────────────────────── */

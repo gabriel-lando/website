@@ -2,14 +2,33 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { profile } from './src/config';
+import { buildSeoFallback, buildSitemap, buildStructuredData, site, siteImageUrl, siteKeywords, siteUrl } from './src/seo';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     {
-      name: 'html-description',
+      name: 'site-seo',
       transformIndexHtml(html) {
-        return html.replace('%DESCRIPTION%', profile.description).replace('%TITLE%', profile.name).replace('%PHOTO%', profile.photo);
+        return html
+          .replaceAll('%DESCRIPTION%', site.description)
+          .replaceAll('%TITLE%', site.title)
+          .replaceAll('%PHOTO%', profile.photo)
+          .replaceAll('%KEYWORDS%', siteKeywords)
+          .replaceAll('%THEME_COLOR%', site.themeColor)
+          .replaceAll('%CANONICAL_URL%', siteUrl)
+          .replaceAll('%OG_LOCALE%', site.locale)
+          .replaceAll('%OG_TYPE%', site.type)
+          .replaceAll('%OG_IMAGE%', siteImageUrl)
+          .replaceAll('%JSON_LD%', buildStructuredData())
+          .replaceAll('%SEO_FALLBACK%', buildSeoFallback());
+      },
+      generateBundle() {
+        this.emitFile({
+          type: 'asset',
+          fileName: 'sitemap.xml',
+          source: buildSitemap(),
+        });
       },
     },
     {

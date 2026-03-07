@@ -6,6 +6,7 @@ export const profile = {
   name: 'Gabriel Lando',
   title: 'Expert Software Applications Engineer',
   company: 'HP Inc.',
+  summary: 'Embedded systems and Windows driver engineer focused on media pipelines, CI/CD, networking, and C/C++.',
   description: 'Gabriel Lando is an Expert Software Applications Engineer at HP Inc. specializing in embedded systems, Windows drivers, media pipelines, CI/CD, networking, and C/C++.',
   photo: '/profile_picture.webp',
 
@@ -15,6 +16,10 @@ export const profile = {
     github: 'https://github.com/gabriel-lando',
     resume: 'https://github.com/gabriel-lando/resume/releases/latest/download/Gabriel_Lando.pdf',
   },
+};
+
+export const siteConfig = {
+  origin: 'https://www.gabriellando.com',
 };
 
 export const experience: { role: string; meta: string }[] = [{ role: 'Software Applications Engineer', meta: 'HP Inc. · 2021 – Present' }];

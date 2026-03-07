@@ -45,6 +45,10 @@ describe('Front card content', () => {
     expect(screen.getByText(profile.company)).toBeInTheDocument();
   });
 
+  it('renders the profile summary', () => {
+    expect(screen.getByText(profile.summary)).toBeInTheDocument();
+  });
+
   it('renders the email link with correct href', () => {
     expect(screen.getByLabelText('Email')).toHaveAttribute('href', `mailto:${profile.links.email}`);
   });

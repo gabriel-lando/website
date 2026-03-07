@@ -114,26 +114,31 @@ function App() {
                   <h1 className="card-name">{profile.name}</h1>
                   <p className="card-title">{profile.title}</p>
                   <p className="card-company">{profile.company}</p>
+                  <p className="card-summary">{profile.summary}</p>
 
                   <ul className="card-links">
                     <li>
                       <a href={`mailto:${profile.links.email}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="Email" data-tooltip="Email">
                         <IconEmail />
+                        <span className="sr-only">Email</span>
                       </a>
                     </li>
                     <li>
                       <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="LinkedIn" data-tooltip="LinkedIn">
                         <IconLinkedIn />
+                        <span className="sr-only">LinkedIn</span>
                       </a>
                     </li>
                     <li>
                       <a href={profile.links.github} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="GitHub" data-tooltip="GitHub">
                         <IconGitHub />
+                        <span className="sr-only">GitHub</span>
                       </a>
                     </li>
                     <li>
                       <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="Resume" data-tooltip="Resume">
                         <IconPDF />
+                        <span className="sr-only">Resume</span>
                       </a>
                     </li>
                   </ul>

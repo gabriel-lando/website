@@ -6,7 +6,7 @@ export const profile = {
   name: 'Gabriel Lando',
   title: 'Expert Software Applications Engineer',
   company: 'HP Inc.',
-  description: 'Gabriel Lando - Expert Software Applications Engineer at HP Inc. Skilled in C, C++, C#, Python, JavaScript, Node.js, Go, Bash, Cloud, DevOps, Docker, Kubernetes, Git, and Linux.',
+  description: 'Gabriel Lando is an Expert Software Applications Engineer at HP Inc. specializing in embedded systems, Windows drivers, media pipelines, CI/CD, networking, and C/C++.',
   photo: '/profile_picture.webp',
 
   links: {
@@ -23,8 +23,6 @@ export const profile = {
   },
 };
 
-export const skills: string[] = ['C', 'C++', 'C#', 'Python', 'JavaScript', 'Node.js', 'Go', 'Bash', 'Cloud', 'DevOps', 'Docker', 'Kubernetes', 'Git', 'Linux', 'Audio/Video'];
-
 export const experience: { role: string; meta: string }[] = [{ role: 'Software Applications Engineer', meta: 'HP Inc. · 2021 – Present' }];
 
 export const education: { degree: string; meta: string }[] = [
@@ -33,7 +31,30 @@ export const education: { degree: string; meta: string }[] = [
 ];
 
 export const stats: { number: string; label: string; url?: string }[] = [
-  { number: '4', label: 'Publications', url: 'https://scholar.google.com/citations?user=XedTbGMAAAAJ' },
   { number: '7', label: 'Patents', url: 'https://patents.google.com/?inventor=Gabriel+Lando' },
+  { number: '4', label: 'Publications', url: 'https://scholar.google.com/citations?user=XedTbGMAAAAJ' },
   { number: '5+', label: 'Years at HP' },
+];
+
+export const skills: string[] = [
+  'C',
+  'C++',
+  'C#',
+  'Python',
+  'Go',
+  'JavaScript',
+  'Embedded Systems',
+  'Systems Programming',
+  'Windows Driver Development',
+  'Kernel Drivers',
+  'DirectShow',
+  'Media Foundation',
+  'CI/CD',
+  'Docker',
+  'Kubernetes',
+  'Virtualization',
+  'Networking',
+  'SDR',
+  'LTE/5G',
+  'Firmware Development',
 ];

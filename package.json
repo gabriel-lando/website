@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && npm run build:social-preview",
+    "build:social-preview": "node ./scripts/generate-social-preview.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "playwright:install": "playwright install chromium firefox",
@@ -19,8 +20,8 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
     "@eslint/js": "^9.0.0",
+    "@playwright/test": "^1.58.2",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -35,6 +36,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
     "jsdom": "^28.1.0",
+    "prettier": "^3.8.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^7.3.1",

@@ -25,6 +25,15 @@
   --border: #e5e7eb;
   --shadow: rgba(0, 0, 0, 0.1);
   --glass: rgba(255, 255, 255, 0.9);
+
+  /* Skill color palette – light mode */
+  --skill-palette-0: #2563eb;
+  --skill-palette-1: #7c3aed;
+  --skill-palette-2: #d97706;
+  --skill-palette-3: #059669;
+  --skill-palette-4: #0891b2;
+  --skill-palette-5: #db2777;
+  --skill-palette-6: #ea580c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,6 +46,15 @@
     --border: #2d313a;
     --shadow: rgba(0, 0, 0, 0.5);
     --glass: rgba(26, 28, 33, 0.9);
+
+    /* Skill color palette – dark mode (lighter for dark backgrounds) */
+    --skill-palette-0: #93c5fd;
+    --skill-palette-1: #c4b5fd;
+    --skill-palette-2: #fcd34d;
+    --skill-palette-3: #6ee7b7;
+    --skill-palette-4: #67e8f9;
+    --skill-palette-5: #f9a8d4;
+    --skill-palette-6: #fdba74;
   }
 }
 
@@ -327,15 +345,40 @@
 }
 
 .skill-tag {
-  background: var(--page-bg);
-  border: 1px solid var(--border);
-  color: var(--text-main);
+  background: color-mix(in srgb, var(--skill-color) 10%, var(--card-bg));
+  border: 1px solid color-mix(in srgb, var(--skill-color) 30%, transparent);
+  color: var(--skill-color);
   padding: 0.16rem 0.48rem;
   font-size: 0.7rem;
   line-height: 1.15;
   font-weight: 500;
   border-radius: 999px;
   white-space: nowrap;
+  cursor: default;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.skill-tag:hover {
+  transform: translateY(-1px) scale(1.07);
+  box-shadow: 0 3px 8px -2px var(--shadow);
+}
+
+/* Staggered pop-in animation when card flips to back */
+@keyframes skill-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-inner.is-flipped .skill-tag {
+  animation: skill-pop 0.28s calc(var(--i, 0) * 28ms) ease-out backwards;
 }
 
 .back-stats {

@@ -82,11 +82,11 @@ describe('Back card content', () => {
   });
 
   it('renders the first skill', () => {
-    expect(screen.getByText(skills[0])).toBeInTheDocument();
+    expect(screen.getByText(skills[0].name)).toBeInTheDocument();
   });
 
   it('renders the second skill', () => {
-    expect(screen.getByText(skills[1])).toBeInTheDocument();
+    expect(screen.getByText(skills[1].name)).toBeInTheDocument();
   });
 
   it('renders the experience role', () => {

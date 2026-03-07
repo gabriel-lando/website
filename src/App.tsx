@@ -1,6 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import './App.css';
 import { profile, skills, experience, education, stats } from './config';
+
+const SKILL_PALETTE_SIZE = 7;
+const categoryOrder = [...new Set(skills.map((s) => s.category))];
+const skillColor = (cat: string) => `var(--skill-palette-${categoryOrder.indexOf(cat) % SKILL_PALETTE_SIZE})`;
 
 const IconEmail = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -100,8 +104,8 @@ function App() {
                 <h3>Skills</h3>
                 <div className="back-skills-container">
                   {skills.map((skill, i) => (
-                    <span key={`skill-${i}`} className="skill-tag">
-                      {skill}
+                    <span key={`skill-${i}`} className="skill-tag" style={{ '--i': i, '--skill-color': skillColor(skill.category) } as CSSProperties}>
+                      {skill.name}
                     </span>
                   ))}
                 </div>

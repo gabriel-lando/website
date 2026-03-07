@@ -20,13 +20,13 @@ A single-page interactive business card with a flip animation, displaying contac
 All personal data is kept in a single file: [`src/config.ts`](src/config.ts).  
 Fork the repository and edit that file to make the card your own — no other files need to change.
 
-| Export       | What it controls                                                                                                                      |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `profile`    | Name, title, company, photo path, and all contact links (email, LinkedIn, GitHub, resume URL)                                         |
-| `skills`     | Array of skill-line strings shown on the back of the card                                                                             |
-| `experience` | Array of `{ role, meta }` entries in the Experience section                                                                           |
-| `education`  | Array of `{ degree, meta }` entries in the Education section                                                                          |
-| `stats`      | Array of `{ number, label, url? }` highlight stats at the bottom of the back. If `url` is provided, the stat becomes a clickable link |
+| Export       | What it controls                                                                                                                                                                          |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profile`    | Name, title, company, photo path, and all contact links (email, LinkedIn, GitHub, resume URL)                                                                                             |
+| `skills`     | Array of `{ name, category }` skill tags shown on the back of the card. Each unique category is automatically assigned a colour from a built-in palette, adapting to light and dark mode. |
+| `experience` | Array of `{ role, meta }` entries in the Experience section                                                                                                                               |
+| `education`  | Array of `{ degree, meta }` entries in the Education section                                                                                                                              |
+| `stats`      | Array of `{ number, label, url? }` highlight stats at the bottom of the back. If `url` is provided, the stat becomes a clickable link                                                     |
 
 Replace `/public/profile_picture.png` with your own photo (keep the same filename, or update `profile.photo` in `src/config.ts`).
 

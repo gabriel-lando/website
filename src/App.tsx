@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { profile, skills, experience, education, stats } from './config';
 
@@ -38,7 +38,7 @@ function App() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Space') {
+      if (e.code === 'Space' || e.code === 'Enter') {
         e.preventDefault();
         setFlipped((prev) => !prev);
       }
@@ -50,98 +50,102 @@ function App() {
   return (
     <div className="page">
       <div className="card-scene">
-        <p className="flip-hint" onClick={handleClick}>
-          {flipped ? '↩ tap to flip back' : 'tap to flip ↩'}
-        </p>
-        <div className={`card-body${flipped ? ' is-flipped' : ''}`} onClick={handleClick} role="button" aria-label={flipped ? 'Flip card to front' : 'Flip card to back'}>
-          <div className="card-inner">
-            {/* ── FRONT ── */}
-            <div className="card-face card-front">
+        <p className="flip-hint">Click or press Space to flip</p>
+        <div className={`card-inner ${flipped ? 'is-flipped' : ''}`} onClick={handleClick} role="button" aria-label={flipped ? 'Flip card to front' : 'Flip card to back'} tabIndex={0}>
+          {/* ── FRONT ── */}
+          <div className="card-face card-front">
+            <div className="bg-accent"></div>
+            <div className="front-left">
+              <h1 className="card-name">{profile.name}</h1>
+              <p className="card-title">{profile.title}</p>
+              <p className="card-company">{profile.company}</p>
+
+              <ul className="card-links">
+                <li>
+                  <a href={`mailto:${profile.links.email}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="Email">
+                    <IconEmail />
+                  </a>
+                </li>
+                <li>
+                  <a href={profile.links.linkedin.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="LinkedIn">
+                    <IconLinkedIn />
+                  </a>
+                </li>
+                <li>
+                  <a href={profile.links.github.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="GitHub">
+                    <IconGitHub />
+                  </a>
+                </li>
+                <li>
+                  <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="Resume">
+                    <IconPDF />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="front-right">
               <div className="front-photo">
                 <img src={profile.photo} alt={profile.name} fetchPriority="high" />
               </div>
-              <div className="front-info">
-                <h1 className="card-name">{profile.name}</h1>
-                <p className="card-title">{profile.title}</p>
-                <p className="card-company">{profile.company}</p>
-                <ul className="card-links">
-                  <li>
-                    <a href={`mailto:${profile.links.email}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                      <IconEmail />
-                      <span>{profile.links.email}</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href={profile.links.linkedin.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                      <IconLinkedIn />
-                      <span>{profile.links.linkedin.label}</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href={profile.links.github.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                      <IconGitHub />
-                      <span>{profile.links.github.label}</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                      <IconPDF />
-                      <span>Resume / CV</span>
-                    </a>
-                  </li>
+            </div>
+          </div>
+
+          {/* ── BACK ── */}
+          <div className="card-face card-back">
+            <div className="bg-accent"></div>
+            <div className="back-header">
+              <h2 className="back-name">{profile.name}</h2>
+              <IconLinkedIn />
+            </div>
+
+            <div className="back-grid">
+              <div className="back-section">
+                <h3>Experience & Education</h3>
+                <ul className="back-list">
+                  {experience.map((e, i) => (
+                    <li key={`exp-${i}`}>
+                      {e.role}
+                      <span className="meta">{e.meta}</span>
+                    </li>
+                  ))}
+                  {education.map((e, i) => (
+                    <li key={`edu-${i}`}>
+                      {e.degree}
+                      <span className="meta">{e.meta}</span>
+                    </li>
+                  ))}
                 </ul>
+              </div>
+
+              <div className="back-section hide-scrollbar">
+                <h3>Skills</h3>
+                <div className="back-skills-container">
+                  {skills
+                    .flatMap((s) => s.split(' · '))
+                    .map((skill, i) => (
+                      <span key={`skill-${i}`} className="skill-tag">
+                        {skill}
+                      </span>
+                    ))}
+                </div>
               </div>
             </div>
 
-            {/* ── BACK ── */}
-            <div className="card-face card-back">
-              <div className="back-content">
-                <div className="back-section">
-                  <h2 className="back-heading">Skills</h2>
-                  {skills.map((line, i) => (
-                    <p key={i} className="back-skills">
-                      {line}
-                    </p>
-                  ))}
-                </div>
-                <div className="back-divider" />
-                <div className="back-columns">
-                  <div className="back-section">
-                    <h2 className="back-heading">Experience</h2>
-                    {experience.map((e, i) => (
-                      <Fragment key={i}>
-                        <p className="back-role">{e.role}</p>
-                        <p className="back-meta">{e.meta}</p>
-                      </Fragment>
-                    ))}
+            <div className="back-stats">
+              {stats.map((s, i) =>
+                s.url ? (
+                  <a key={i} className="stat-item stat-link" href={s.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                    <span className="stat-number">{s.number}</span>
+                    <span className="stat-label">{s.label}</span>
+                  </a>
+                ) : (
+                  <div key={i} className="stat-item">
+                    <span className="stat-number">{s.number}</span>
+                    <span className="stat-label">{s.label}</span>
                   </div>
-                  <div className="back-section">
-                    <h2 className="back-heading">Education</h2>
-                    {education.map((ed, i) => (
-                      <Fragment key={i}>
-                        <p className="back-role">{ed.degree}</p>
-                        <p className="back-meta">{ed.meta}</p>
-                      </Fragment>
-                    ))}
-                  </div>
-                </div>
-                <div className="back-divider" />
-                <div className="back-stats">
-                  {stats.map((s, i) =>
-                    s.url ? (
-                      <a key={i} className="stat stat-link" href={s.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        <span className="stat-number">{s.number}</span>
-                        <span className="stat-label">{s.label}</span>
-                      </a>
-                    ) : (
-                      <div key={i} className="stat">
-                        <span className="stat-number">{s.number}</span>
-                        <span className="stat-label">{s.label}</span>
-                      </div>
-                    ),
-                  )}
-                </div>
-              </div>
+                ),
+              )}
             </div>
           </div>
         </div>

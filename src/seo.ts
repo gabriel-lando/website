@@ -100,7 +100,7 @@ export const buildSeoFallback = () => {
     <section class="seo-fallback" aria-label="Profile summary">
       <div class="seo-fallback__inner">
         <p class="seo-fallback__eyebrow">Digital business card</p>
-        <h1>${escapeHtml(profile.name)}</h1>
+        <h2>${escapeHtml(profile.name)}</h2>
         <p class="seo-fallback__title">${escapeHtml(profile.title)} at ${escapeHtml(profile.company)}</p>
         <p class="seo-fallback__description">${escapeHtml(profile.summary)}</p>
         <p class="seo-fallback__description">${escapeHtml(profile.description)}</p>

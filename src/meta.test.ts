@@ -37,6 +37,11 @@ describe("meta description", () => {
     expect(match).not.toBeNull();
     expect(match![1]).toBe(site.description);
   });
+
+  it("profile.description stays within recommended meta description length", () => {
+    expect(profile.description.length).toBeGreaterThanOrEqual(120);
+    expect(profile.description.length).toBeLessThanOrEqual(160);
+  });
 });
 
 describe("title", () => {

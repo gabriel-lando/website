@@ -9,7 +9,7 @@ export const profile = {
   summary:
     "Embedded systems and Windows driver engineer focused on media pipelines, CI/CD, networking, and C/C++.",
   description:
-    "Gabriel Lando is an Expert Software Applications Engineer at HP Inc. specializing in embedded systems, Windows drivers, media pipelines, CI/CD, networking, and C/C++.",
+    "Gabriel Lando is an Expert Software Applications Engineer at HP Inc. focused on embedded systems, Windows drivers, media pipelines, networking, and C/C++.",
   photo: "/profile_picture.webp",
 
   links: {

@@ -23,7 +23,7 @@ export const profile = {
   },
 };
 
-export const skills: string[] = ['C · C++ · C# · Python · JavaScript · Node.js · Go · Bash', 'Cloud · DevOps · Docker · Kubernetes · Git · Linux · Audio/Video'];
+export const skills: string[] = ['C', 'C++', 'C#', 'Python', 'JavaScript', 'Node.js', 'Go', 'Bash', 'Cloud', 'DevOps', 'Docker', 'Kubernetes', 'Git', 'Linux', 'Audio/Video'];
 
 export const experience: { role: string; meta: string }[] = [{ role: 'Software Applications Engineer', meta: 'HP Inc. · 2021 – Present' }];
 

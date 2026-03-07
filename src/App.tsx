@@ -50,102 +50,104 @@ function App() {
   return (
     <div className="page">
       <div className="card-scene">
-        <p className="flip-hint">Click or press Space to flip</p>
-        <div className={`card-inner ${flipped ? 'is-flipped' : ''}`} onClick={handleClick} role="button" aria-label={flipped ? 'Flip card to front' : 'Flip card to back'} tabIndex={0}>
-          {/* ── FRONT ── */}
-          <div className="card-face card-front">
-            <div className="bg-accent"></div>
-            <div className="front-left">
-              <h1 className="card-name">{profile.name}</h1>
-              <p className="card-title">{profile.title}</p>
-              <p className="card-company">{profile.company}</p>
+        <div className="card-scale">
+          <p className="flip-hint">Click or press Space to flip</p>
+          <div className={`card-inner ${flipped ? 'is-flipped' : ''}`} onClick={handleClick} role="button" aria-label={flipped ? 'Flip card to front' : 'Flip card to back'} tabIndex={0}>
+            {/* ── FRONT ── */}
+            <div className="card-face card-front">
+              <div className="bg-accent"></div>
+              <div className="front-left">
+                <h1 className="card-name">{profile.name}</h1>
+                <p className="card-title">{profile.title}</p>
+                <p className="card-company">{profile.company}</p>
 
-              <ul className="card-links">
-                <li>
-                  <a href={`mailto:${profile.links.email}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="Email">
-                    <IconEmail />
-                  </a>
-                </li>
-                <li>
-                  <a href={profile.links.linkedin.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="LinkedIn">
-                    <IconLinkedIn />
-                  </a>
-                </li>
-                <li>
-                  <a href={profile.links.github.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="GitHub">
-                    <IconGitHub />
-                  </a>
-                </li>
-                <li>
-                  <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="Resume">
-                    <IconPDF />
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="front-right">
-              <div className="front-photo">
-                <img src={profile.photo} alt={profile.name} fetchPriority="high" />
-              </div>
-            </div>
-          </div>
-
-          {/* ── BACK ── */}
-          <div className="card-face card-back">
-            <div className="bg-accent"></div>
-            <div className="back-header">
-              <h2 className="back-name">{profile.name}</h2>
-              <IconLinkedIn />
-            </div>
-
-            <div className="back-grid">
-              <div className="back-section">
-                <h3>Experience & Education</h3>
-                <ul className="back-list">
-                  {experience.map((e, i) => (
-                    <li key={`exp-${i}`}>
-                      {e.role}
-                      <span className="meta">{e.meta}</span>
-                    </li>
-                  ))}
-                  {education.map((e, i) => (
-                    <li key={`edu-${i}`}>
-                      {e.degree}
-                      <span className="meta">{e.meta}</span>
-                    </li>
-                  ))}
+                <ul className="card-links">
+                  <li>
+                    <a href={`mailto:${profile.links.email}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="Email" data-tooltip="Email">
+                      <IconEmail />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={profile.links.linkedin.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="LinkedIn" data-tooltip="LinkedIn">
+                      <IconLinkedIn />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={profile.links.github.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="GitHub" data-tooltip="GitHub">
+                      <IconGitHub />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="Resume" data-tooltip="Resume">
+                      <IconPDF />
+                    </a>
+                  </li>
                 </ul>
               </div>
 
-              <div className="back-section hide-scrollbar">
-                <h3>Skills</h3>
-                <div className="back-skills-container">
-                  {skills
-                    .flatMap((s) => s.split(' · '))
-                    .map((skill, i) => (
-                      <span key={`skill-${i}`} className="skill-tag">
-                        {skill}
-                      </span>
-                    ))}
+              <div className="front-right">
+                <div className="front-photo">
+                  <img src={profile.photo} alt={profile.name} fetchPriority="high" />
                 </div>
               </div>
             </div>
 
-            <div className="back-stats">
-              {stats.map((s, i) =>
-                s.url ? (
-                  <a key={i} className="stat-item stat-link" href={s.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                    <span className="stat-number">{s.number}</span>
-                    <span className="stat-label">{s.label}</span>
-                  </a>
-                ) : (
-                  <div key={i} className="stat-item">
-                    <span className="stat-number">{s.number}</span>
-                    <span className="stat-label">{s.label}</span>
-                  </div>
-                ),
-              )}
+            {/* ── BACK ── */}
+            <div className="card-face card-back">
+              <div className="bg-accent"></div>
+
+              <div className="back-section back-skills-section hide-scrollbar">
+                <h3>Skills</h3>
+                <div className="back-skills-container">
+                  {skills.map((skill, i) => (
+                    <span key={`skill-${i}`} className="skill-tag">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="back-grid">
+                <div className="back-section">
+                  <h3>Experience</h3>
+                  <ul className="back-list">
+                    {experience.map((e, i) => (
+                      <li key={`exp-${i}`}>
+                        {e.role}
+                        <span className="meta">{e.meta}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="back-section">
+                  <h3>Education</h3>
+                  <ul className="back-list">
+                    {education.map((e, i) => (
+                      <li key={`edu-${i}`}>
+                        {e.degree}
+                        <span className="meta">{e.meta}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="back-stats">
+                {stats.map((s, i) =>
+                  s.url ? (
+                    <a key={i} className="stat-item stat-link" href={s.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                      <span className="stat-number">{s.number}</span>
+                      <span className="stat-label">{s.label}</span>
+                    </a>
+                  ) : (
+                    <div key={i} className="stat-item">
+                      <span className="stat-number">{s.number}</span>
+                      <span className="stat-label">{s.label}</span>
+                    </div>
+                  ),
+                )}
+              </div>
             </div>
           </div>
         </div>

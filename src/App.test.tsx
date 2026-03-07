@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
@@ -55,23 +56,19 @@ describe('Front card content', () => {
   });
 
   it('renders the email link with correct href', () => {
-    const link = screen.getByText(profile.links.email).closest('a');
-    expect(link).toHaveAttribute('href', `mailto:${profile.links.email}`);
+    expect(screen.getByLabelText('Email')).toHaveAttribute('href', `mailto:${profile.links.email}`);
   });
 
-  it('renders the LinkedIn label with correct href', () => {
-    const link = screen.getByText(profile.links.linkedin.label).closest('a');
-    expect(link).toHaveAttribute('href', profile.links.linkedin.url);
+  it('renders the LinkedIn link with correct href', () => {
+    expect(screen.getByLabelText('LinkedIn')).toHaveAttribute('href', profile.links.linkedin.url);
   });
 
-  it('renders the GitHub label with correct href', () => {
-    const link = screen.getByText(profile.links.github.label).closest('a');
-    expect(link).toHaveAttribute('href', profile.links.github.url);
+  it('renders the GitHub link with correct href', () => {
+    expect(screen.getByLabelText('GitHub')).toHaveAttribute('href', profile.links.github.url);
   });
 
   it('renders the resume link', () => {
-    const link = screen.getByText('Resume / CV').closest('a');
-    expect(link).toHaveAttribute('href', profile.links.resume);
+    expect(screen.getByLabelText('Resume')).toHaveAttribute('href', profile.links.resume);
   });
 });
 
@@ -84,11 +81,11 @@ describe('Back card content', () => {
     await user.click(screen.getByRole('button'));
   });
 
-  it('renders the first skills line', () => {
+  it('renders the first skill', () => {
     expect(screen.getByText(skills[0])).toBeInTheDocument();
   });
 
-  it('renders the second skills line', () => {
+  it('renders the second skill', () => {
     expect(screen.getByText(skills[1])).toBeInTheDocument();
   });
 

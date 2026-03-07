@@ -42,3 +42,22 @@ Build for production:
 ```bash
 npm run build
 ```
+
+Run unit tests:
+
+```bash
+npm test
+```
+
+Run cross-browser responsive tests in Chromium and Firefox:
+
+```bash
+npm run playwright:install
+npm run test:e2e
+```
+
+Run both unit and browser tests:
+
+```bash
+npm run test:all
+```

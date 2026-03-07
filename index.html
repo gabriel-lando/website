@@ -21,6 +21,14 @@
     <meta name="twitter:image" content="%OG_IMAGE%" />
     <title>%TITLE%</title>
     <link rel="preload" as="image" href="%PHOTO%" fetchpriority="high" />
+    <script>
+      document.documentElement.classList.add('app-ready');
+    </script>
+    <style>
+      html.app-ready .seo-fallback {
+        display: none;
+      }
+    </style>
     <script type="application/ld+json">
       %JSON_LD%
     </script>

@@ -354,15 +354,6 @@
   font-weight: 500;
   border-radius: 999px;
   white-space: nowrap;
-  cursor: default;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.skill-tag:hover {
-  transform: translateY(-1px) scale(1.07);
-  box-shadow: 0 3px 8px -2px var(--shadow);
 }
 
 /* Staggered pop-in animation when card flips to back */

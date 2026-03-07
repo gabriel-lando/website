@@ -141,11 +141,14 @@
   border: 1px solid var(--border);
   display: flex;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.card-inner:not(.is-flipped) .card-front,
-.card-inner.is-flipped .card-back {
+.card-face.is-active {
   pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ─── Background geometric accents ────────────────────────── */

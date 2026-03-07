@@ -108,7 +108,7 @@ function App() {
           <div className="card-scale">
             <div className={`card-inner ${flipped ? 'is-flipped' : ''}`} onClick={handleClick} role="button" aria-label={flipped ? 'Flip card to front' : 'Flip card to back'} tabIndex={0}>
               {/* ── FRONT ── */}
-              <div className="card-face card-front">
+              <div className={`card-face card-front ${flipped ? 'is-inactive' : 'is-active'}`} aria-hidden={flipped}>
                 <div className="bg-accent"></div>
                 <div className="front-left">
                   <h1 className="card-name">{profile.name}</h1>
@@ -147,7 +147,7 @@ function App() {
               </div>
 
               {/* ── BACK ── */}
-              <div className="card-face card-back">
+              <div className={`card-face card-back ${flipped ? 'is-active' : 'is-inactive'}`} aria-hidden={!flipped}>
                 <div className="bg-accent"></div>
 
                 <div className="back-section back-skills-section hide-scrollbar">

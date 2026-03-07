@@ -11,14 +11,8 @@ export const profile = {
 
   links: {
     email: 'mail@gabriellando.com',
-    linkedin: {
-      url: 'https://www.linkedin.com/in/gabriellando',
-      label: 'in/gabriellando',
-    },
-    github: {
-      url: 'https://github.com/gabriel-lando',
-      label: 'gabriel-lando',
-    },
+    linkedin: 'https://www.linkedin.com/in/gabriellando',
+    github: 'https://github.com/gabriel-lando',
     resume: 'https://github.com/gabriel-lando/resume/releases/latest/download/Gabriel_Lando.pdf',
   },
 };

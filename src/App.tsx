@@ -122,12 +122,12 @@ function App() {
                       </a>
                     </li>
                     <li>
-                      <a href={profile.links.linkedin.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="LinkedIn" data-tooltip="LinkedIn">
+                      <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="LinkedIn" data-tooltip="LinkedIn">
                         <IconLinkedIn />
                       </a>
                     </li>
                     <li>
-                      <a href={profile.links.github.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="GitHub" data-tooltip="GitHub">
+                      <a href={profile.links.github} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label="GitHub" data-tooltip="GitHub">
                         <IconGitHub />
                       </a>
                     </li>

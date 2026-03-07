@@ -5,16 +5,6 @@ import App from './App';
 import { profile, skills, experience, education, stats } from './config';
 
 describe('App', () => {
-  it('renders without crashing', () => {
-    render(<App />);
-    expect(document.body).toBeTruthy();
-  });
-
-  it('renders the flip card button', () => {
-    render(<App />);
-    expect(screen.getByRole('button')).toBeInTheDocument();
-  });
-
   it('flips the card when clicked', async () => {
     const user = userEvent.setup();
     render(<App />);
@@ -60,11 +50,11 @@ describe('Front card content', () => {
   });
 
   it('renders the LinkedIn link with correct href', () => {
-    expect(screen.getByLabelText('LinkedIn')).toHaveAttribute('href', profile.links.linkedin.url);
+    expect(screen.getByLabelText('LinkedIn')).toHaveAttribute('href', profile.links.linkedin);
   });
 
   it('renders the GitHub link with correct href', () => {
-    expect(screen.getByLabelText('GitHub')).toHaveAttribute('href', profile.links.github.url);
+    expect(screen.getByLabelText('GitHub')).toHaveAttribute('href', profile.links.github);
   });
 
   it('renders the resume link', () => {

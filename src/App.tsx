@@ -1,10 +1,32 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import './App.css';
 import { profile, skills, experience, education, stats } from './config';
 
 const SKILL_PALETTE_SIZE = 7;
+const CARD_BASE_WIDTH = 720;
+const CARD_BASE_HEIGHT = 412;
+const MIN_PAGE_GUTTER = 12;
+const MAX_PAGE_GUTTER = 32;
+const PAGE_GUTTER_RATIO = 0.025;
+
 const categoryOrder = [...new Set(skills.map((s) => s.category))];
 const skillColor = (cat: string) => `var(--skill-palette-${categoryOrder.indexOf(cat) % SKILL_PALETTE_SIZE})`;
+
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+
+const getPageGutter = (width: number, height: number) => clamp(Math.min(width, height) * PAGE_GUTTER_RATIO, MIN_PAGE_GUTTER, MAX_PAGE_GUTTER);
+
+const getCardScale = (width: number, height: number) => {
+  const gutter = getPageGutter(width, height);
+  const availableWidth = Math.max(width - gutter * 2, 0);
+  const availableHeight = Math.max(height - gutter * 2, 0);
+
+  if (availableWidth === 0 || availableHeight === 0) {
+    return 1;
+  }
+
+  return Math.min(1, availableWidth / CARD_BASE_WIDTH, availableHeight / CARD_BASE_HEIGHT);
+};
 
 const IconEmail = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -37,6 +59,8 @@ const IconLinkedIn = () => (
 
 function App() {
   const [flipped, setFlipped] = useState(false);
+  const [cardScale, setCardScale] = useState(() => getCardScale(window.innerWidth, window.innerHeight));
+  const pageRef = useRef<HTMLDivElement>(null);
 
   const handleClick = () => setFlipped((prev) => !prev);
 
@@ -51,8 +75,34 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    const updateCardScale = () => {
+      const page = pageRef.current;
+      const width = page?.clientWidth || window.innerWidth;
+      const height = page?.clientHeight || window.innerHeight;
+      const nextScale = getCardScale(width, height);
+
+      setCardScale((currentScale) => (Math.abs(currentScale - nextScale) < 0.001 ? currentScale : nextScale));
+    };
+
+    updateCardScale();
+    window.addEventListener('resize', updateCardScale);
+
+    const page = pageRef.current;
+    const resizeObserver = typeof ResizeObserver !== 'undefined' && page ? new ResizeObserver(updateCardScale) : null;
+
+    if (resizeObserver && page) {
+      resizeObserver.observe(page);
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateCardScale);
+      resizeObserver?.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="page">
+    <div className="page" ref={pageRef} style={{ '--card-scale': cardScale } as CSSProperties}>
       <div className="card-wrapper">
         <div className="card-scene">
           <div className="card-scale">

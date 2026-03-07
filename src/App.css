@@ -18,11 +18,7 @@
   --card-base-width: 720px;
   --card-base-height: 412px;
   --page-gutter: clamp(0.75rem, 2.5vmin, 2rem);
-  --viewport-card-scale: min(
-    calc((100vw - (var(--page-gutter) * 2)) / var(--card-base-width)),
-    calc((100vh - (var(--page-gutter) * 2)) / var(--card-base-height))
-  );
-  --card-scale: min(1, var(--viewport-card-scale));
+  --card-scale: 1;
   --page-bg: #e5e7eb;
   --card-bg: #ffffff;
   --text-main: #1f2937;
@@ -49,15 +45,6 @@
   --skill-palette-4: #0891b2;
   --skill-palette-5: #db2777;
   --skill-palette-6: #ea580c;
-}
-
-@supports (height: 100dvh) {
-  :root {
-    --viewport-card-scale: min(
-      calc((100dvw - (var(--page-gutter) * 2)) / var(--card-base-width)),
-      calc((100dvh - (var(--page-gutter) * 2)) / var(--card-base-height))
-    );
-  }
 }
 
 @media (prefers-color-scheme: dark) {

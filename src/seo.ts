@@ -10,7 +10,7 @@ export const site = {
   themeColor: '#2563eb',
   title: `${profile.name} | ${profile.title}`,
   description: profile.description,
-  imagePath: profile.photo,
+  imagePath: siteConfig.socialImage,
   keywords: [profile.name, profile.title, ...skills.map((skill) => skill.name)].filter((keyword, index, allKeywords) => allKeywords.indexOf(keyword) === index),
 };
 

@@ -1,10 +1,11 @@
 # Build stage
-FROM node:lts-alpine AS build
+FROM node:lts AS build
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm install -g npm-check-updates
 RUN ncu -u && npm install --legacy-peer-deps
+RUN npx playwright install --with-deps chromium
 
 COPY . .
 RUN npm test

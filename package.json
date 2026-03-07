@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && npm run build:social-preview",
+    "build:social-preview": "node ./scripts/generate-social-preview.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "playwright:install": "playwright install chromium firefox",

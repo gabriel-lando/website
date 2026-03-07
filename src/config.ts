@@ -20,6 +20,7 @@ export const profile = {
 
 export const siteConfig = {
   origin: 'https://www.gabriellando.com',
+  socialImage: '/social-preview.png',
 };
 
 export const experience: { role: string; meta: string }[] = [{ role: 'Software Applications Engineer', meta: 'HP Inc. · 2021 – Present' }];

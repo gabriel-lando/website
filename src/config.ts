@@ -28,6 +28,8 @@ export const siteConfig = {
 
 export const experience: { role: string; meta: string }[] = [
   { role: "Software Applications Engineer", meta: "HP Inc. · 2021 – Present" },
+  { role: "Research and Development Intern", meta: "HP Inc. · 2019 – 2021" },
+  { role: "Scientific Initiation Scholar", meta: "UFRGS · 2017 – 2019" },
 ];
 
 export const education: { degree: string; meta: string }[] = [
@@ -46,7 +48,11 @@ export const stats: { number: string; label: string; url?: string }[] = [
     label: "Publications",
     url: "https://scholar.google.com/citations?user=XedTbGMAAAAJ",
   },
-  { number: "5+", label: "Years at HP" },
+  {
+    number: "6+",
+    label: "Years at HP",
+    url: "https://www.linkedin.com/in/gabriellando/details/experience/",
+  },
 ];
 
 export const skills: { name: string; category: string }[] = [

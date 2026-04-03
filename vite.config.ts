@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import babel from "@rolldown/plugin-babel";
 import { profile } from "./src/config";
 import {
   buildSeoFallback,
@@ -63,10 +64,9 @@ export default defineConfig({
         },
       },
     },
-    react({
-      babel: {
-        plugins: [["babel-plugin-react-compiler"]],
-      },
+    react(),
+    babel({
+      plugins: ["babel-plugin-react-compiler"],
     }),
   ],
   test: {

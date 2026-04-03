@@ -16,8 +16,7 @@ export const profile = {
     email: "mail@gabriellando.com",
     linkedin: "https://www.linkedin.com/in/gabriellando",
     github: "https://github.com/gabriel-lando",
-    resume:
-      "https://github.com/gabriel-lando/resume/releases/latest/download/Gabriel_Lando.pdf",
+    resume: "https://gabriel-lando.github.io/resume/Gabriel_Lando.pdf",
   },
 };
 

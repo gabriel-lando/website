@@ -3,8 +3,7 @@ FROM node:lts AS build
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install -g npm-check-updates
-RUN ncu -u && npm install --legacy-peer-deps
+RUN npm install
 RUN npx playwright install --with-deps chromium
 
 COPY . .
